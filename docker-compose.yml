@@ -19,7 +19,7 @@ services:
       - db
     volumes:
       - static:/static
-      - media:/app/media
+      - media:/app/media/
 
   frontend:
     env_file: .env
@@ -32,8 +32,10 @@ services:
     restart: always
     build: ./nginx/
     env_file: .env
+    depends_on:
+      - backend
     ports:
       - 9000:80
     volumes:
       - static:/static
-      - media:/app/media
+      - media:/app/media/
